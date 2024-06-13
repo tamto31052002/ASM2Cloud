@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars Quote App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #007bff;
+            color: #fff;
+            text-align: left;
+        }
+        td {
+            text-align: center;
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CREATE: May Node and Express be with you.</h1>
+        <form action="/quotes" method="POST">
+            <input type="text" placeholder="Name" name="name" />
+            <input type="text" placeholder="Quote" name="quote" />
+            <button type="submit">Submit</button>
+        </form>
+
+        <h2>READ: All Quotes in Database</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Quote</th>
+                    <th>Action</th> <!-- Thêm cột Action -->
+                </tr>
+            </thead>
+            <tbody>
+                <% for(var i = 0; i < quotes.length; i++) { %>
+                    <tr>
+                        <td><%= quotes[i].name %></td>
+                        <td><%= quotes[i].quote %></td>
+                        <td><button class="delete-button" data-index="<%= i %>">Delete</button></td> <!-- Thêm nút xóa và data-index để xác định vị trí của sản phẩm trong mảng -->
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+        <h2>DELETE: Remove Darth Vader!</h2>
+        <p>Delete one of Darth Vader's quotes. Does nothing if there are no more of his quotes.</p>
+        <button id="delete-button">Delete Darth Vader's quote</button>
+    </div>
+    <script src="/main.js"></script>
+    <script>
+        // Xử lý sự kiện xóa sản phẩm
+        document.querySelectorAll('.delete-button').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var index = this.getAttribute('data-index');
+                // Gửi yêu cầu xóa sản phẩm tại vị trí index
+                // Ví dụ: fetch('/delete-product/' + index, { method: 'DELETE' });
+                // Sau khi xóa, cập nhật lại giao diện
+                this.parentNode.parentNode.remove();
+            });
+        });
+    </script>
+</body>
+</html>
