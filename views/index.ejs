@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Star Wars Quote App</title>
+    <title>My Toy Store</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -58,45 +58,40 @@
 </head>
 <body>
     <div class="container">
-        <h1>CREATE: May Node and Express be with you.</h1>
+        <h1>ATN company Website.</h1>
         <form action="/quotes" method="POST">
-            <input type="text" placeholder="Name" name="name" />
-            <input type="text" placeholder="Quote" name="quote" />
-            <button type="submit">Submit</button>
+            <input type="text" placeholder="Name of Product" name="name" />
+            <input type="text" placeholder="Price" name="price" /> 
+            <button type="Add product">Add Product</button>
         </form>
 
-        <h2>READ: All Quotes in Database</h2>
+        <h2>Table of Product </h2>
         <table>
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Quote</th>
-                    <th>Action</th> <!-- Thêm cột Action -->
+                    <th>Price</th> 
+                    <th>Action</th> 
                 </tr>
             </thead>
             <tbody>
                 <% for(var i = 0; i < quotes.length; i++) { %>
                     <tr>
                         <td><%= quotes[i].name %></td>
-                        <td><%= quotes[i].quote %></td>
-                        <td><button class="delete-button" data-index="<%= i %>">Delete</button></td> <!-- Thêm nút xóa và data-index để xác định vị trí của sản phẩm trong mảng -->
+                        <td><%= quotes[i].price %></td> 
+                        <td><button class="delete-button" data-index="<%= i %>">Delete</button></td> 
                     </tr>
                 <% } %>
             </tbody>
         </table>
-        <h2>DELETE: Remove Darth Vader!</h2>
-        <p>Delete one of Darth Vader's quotes. Does nothing if there are no more of his quotes.</p>
-        <button id="delete-button">Delete Darth Vader's quote</button>
-    </div>
+        </table>
+        
+        
     <script src="/main.js"></script>
     <script>
-        // Xử lý sự kiện xóa sản phẩm
         document.querySelectorAll('.delete-button').forEach(function(button) {
             button.addEventListener('click', function() {
                 var index = this.getAttribute('data-index');
-                // Gửi yêu cầu xóa sản phẩm tại vị trí index
-                // Ví dụ: fetch('/delete-product/' + index, { method: 'DELETE' });
-                // Sau khi xóa, cập nhật lại giao diện
                 this.parentNode.parentNode.remove();
             });
         });
